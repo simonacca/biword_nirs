@@ -7,14 +7,7 @@ class Screen:
         self.window = visual.Window(fullscr=True, units="norm", **CONF["screen"])
         self._create_alphabet()
 
-
     def _icon(self, icon, position, active=False):
-        positions = {
-            'center': [0,0],
-            'center_low': [0, 0.5], # TODO: adjust
-            'left': [0-CONF['tasks']['distance'], 0],
-            'right': [CONF['tasks']['distance'], 0],
-        }
         shades = {
             True: 'active',
             False: 'inactive'
@@ -24,12 +17,29 @@ class Screen:
             self.window,
             height=CONF['tasks']['height'],
             text=CONF['tasks']['icons'][icon],
-            pos=positions[position],
+            pos=CONF['positions'][position],
             color=CONF['tasks']['color'][shades[active]]
         ).draw()
 
-    def _word(self, word):
-        visual.TextStim(self.window, text=word).draw()
+    def _word(self, word_range, finished):
+        visual.TextStim(
+            self.window,
+            text=word_range[1] + '!!' if finished else '',
+            pos=CONF['positions']['center']
+        ).draw()
+
+        if not finished:
+            visual.TextStim(
+                self.window,
+                text=word_range[0],
+                pos=CONF['positions']['before_word']
+            ).draw()
+
+            visual.TextStim(
+                self.window,
+                text=word_range[2],
+                pos=CONF['positions']['after_word']
+            ).draw()
 
     def _create_alphabet(self):
         self.alphabet = []
@@ -50,14 +60,21 @@ class Screen:
 
     def show_fixation(self):
         self._icon('fixation', 'center', True)
+        self.window.flip()
 
     def show_previous_classification(self, direction):
         self._icon(direction, 'center', True).draw()
         self.window.flip()
 
-    def show_word(self, word, active=None):
-        self._icon('left', 'left', active == 'left')
-        self._icon('right', 'right', active == 'right')
-        self._icon('correction', 'center_low', active == 'correction')
-        self._word(word)
+    def show_word(self, word_range, active=None):
+        finished = word_range[0] == word_range[1] == word_range[2]
+
+        self._word(word_range, finished)
+
+        if not finished:
+            self._show_alphabet()
+            self._icon('before', 'before_icon', active == 'before')
+            self._icon('after', 'after_icon', active == 'after')
+            self._icon('correction', 'correction_icon', active == 'correction')
+
         self.window.flip()
