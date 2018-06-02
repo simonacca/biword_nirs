@@ -18,8 +18,8 @@ _BASE = {
     },
     "tasks": {
         "icons": {
-            "left": u"\u2190",
-            "right":  u"\u2192",
+            "before": u"\u2190",
+            "after":  u"\u2192",
             "correction": u"\u2A2F",
             "fixation": '+',
         },
@@ -44,6 +44,17 @@ _BASE = {
         },
     }
 }
+
+_BASE = _BASE.update({
+    'positions':{
+        'center': [0,0],
+        'before_word': [0, -0.3],
+        'after_word': [0, 0.3],
+        'correction_icon': [0, 0.5],
+        'before_icon': [0-_BASE['tasks']['distance'], 0],
+        'after_icon': [_BASE['tasks']['distance'], 0],
+    }
+})
 
 _RUN = _BASE.update({
     "timing": {
