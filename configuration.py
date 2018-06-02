@@ -9,8 +9,8 @@ _BASE = {
     },
     'keys': {
         'before': ['1', 'left', 'minus'],
-        'after': ['2', 'right', 'plus'],
-        'start': '5',
+        'correction': ['2'],
+        'after': ['3', 'right', 'plus'],
     },
     'screen': {
         'size': [800, 600],

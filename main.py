@@ -27,7 +27,7 @@ logging.info('Dataset loaded')
 screen = Screen()
 datalog = Datalog()
 trigger = Trigger()
-classifier = Classifier()
+classifier = Classifier(dataset)
 # TODO select input method
 logging.info('Initialization completed')
 
