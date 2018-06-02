@@ -63,7 +63,7 @@ while not dataset.is_finished():
 
     core.wait(CONF['timing']['plan'])
 
-    for phase in ['correction', 'left', 'right']:
+    for phase in ['correction', 'before', 'after']:
         logging.info('Phase: {}'.format(phase))
         datalog.data['time_start_correction'] = clock.getTime()
         screen.show_word(dataset.middle_word(), phase)
@@ -86,12 +86,12 @@ while not dataset.is_finished():
     datalog.save()
 
     # splits dataset to start the next loop
-    dataset.split_dataset(direction)
+    dataset.split(direction)
 
 logging.info('Dictionary has lenght 1, end of iteration')
-logging.info('Final word: %s', dataset.middle_word())
+logging.info('Final word: %s', dataset.middle_word()[1])
 
-screen.show_word(dataset.middle_word() + '!')
+screen.show_word(dataset.middle_word())
 core.wait(CONF['timing']['plan'])
 
 logging.info('Show fixation cross')
