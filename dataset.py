@@ -73,3 +73,6 @@ class Dataset:
         "Checks for the end of the process, when there is only 1 word left."
         left, middle, right = self.middle_word()
         return left == middle == right
+    
+    def last_direction(self):
+        return self.directions[-1] if self.directions else None

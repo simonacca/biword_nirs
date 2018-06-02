@@ -51,7 +51,7 @@ while not dataset.is_finished():
     trigger.start_trial()
 
     logging.info('Phase: Show previous classification')
-    screen.show_previous_classification('left') # TODO: fix
+    screen.show_previous_classification(dataset.last_direction())
 
     core.wait(CONF['timing']['previous_classification'])
 

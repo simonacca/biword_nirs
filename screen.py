@@ -63,6 +63,7 @@ class Screen:
         self.window.flip()
 
     def show_previous_classification(self, direction):
+        if not direction: return
         self._icon(direction, 'center', True).draw()
         self.window.flip()
 
