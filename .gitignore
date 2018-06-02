@@ -1,0 +1,6 @@
+*.pyc
+.vscode
+output
+longword.py
+bettina_files
+env
