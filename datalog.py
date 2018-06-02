@@ -4,12 +4,14 @@ import collections
 import os
 import csv
 
+from configuration import CONF
+
 class Datalog:
-    def __init__(self, OUTPUT_FOLDER, CONF):
+    def __init__(self):
         "Initialize Logger"
 
-        if not os.path.exists(OUTPUT_FOLDER):
-            os.makedirs(OUTPUT_FOLDER)
+        if not os.path.exists(CONF['datalog_folder']):
+            os.makedirs(CONF['datalog_folder'])
 
         # Determines name for output fole
         OUTPUT_FILE_NAME = "{}_{}_{}_{}".format(
@@ -17,11 +19,10 @@ class Datalog:
             CONF["name"],
             CONF["input_method"],
             datetime.datetime.now().strftime("%Y-%m-%d-%H-%M"))
-        self.path = os.path.join(OUTPUT_FOLDER, OUTPUT_FILE_NAME)
+        self.path = os.path.join(CONF['datalog_folder'], OUTPUT_FILE_NAME)
 
         # TODO: auto create output folder
 
-        self.CONF = CONF
         self.save_conf()
 
         # Initialize container for data and writes header to CSV file
@@ -38,7 +39,7 @@ class Datalog:
     def save_conf(self):
         "Writes CONF used for current run to a file, for future reference"
         with open("{}_conf.json".format(self.path), "w+") as f:
-            f.write(json.dumps(self.CONF, indent=2))
+            f.write(json.dumps(CONF, indent=2))
 
     def append_row(self, data):
         "Writes a generic row to the csv file (could be data or HEADER)"

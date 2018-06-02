@@ -25,7 +25,7 @@ logging.info('Dataset loaded')
 
 # Initialize stuff
 screen = Screen()
-datalog = Datalog(OUTPUT_FOLDER='output', CONF=CONF)
+datalog = Datalog()
 trigger = Trigger()
 classifier = Classifier()
 # TODO select input method
