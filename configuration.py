@@ -66,6 +66,11 @@ _RUN = _BASE.update({
         'rest': 5,
         'last_fixation': 20,
     },
+  'satori': {
+      'filepath': 'bettina_files/NIRS-2018-05-15_001_BCI_output.txt',
+      'predictor': ['beta', 'b', 'tValue', 'r'][0],
+      'discriminator': max,
+  },
 })
 
 

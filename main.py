@@ -43,7 +43,7 @@ trigger.start_experiment()
 
 core.wait(CONF['timing']['first_fixation'])
 
-sequence_number = 0
+sequence_number = -1
 while not dataset.is_finished():
     sequence_number += 1
     logging.info('Iteration #%s', sequence_number)
@@ -77,7 +77,7 @@ while not dataset.is_finished():
 
 
     # Waits for answer to proceed to next word
-    direction = classifier.get_prediction()
+    direction = classifier.get_prediction(sequence_number)
     logging.info('Classifier prediction: {}'.format(direction))
 
     datalog.data['time_answer'] = clock.getTime()

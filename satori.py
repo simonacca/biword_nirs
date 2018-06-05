@@ -11,9 +11,8 @@ def _parse_time(line, output):
     
 def _parse_beta(line, output):
     val = re.findall(r'Beta: ([\d\.\-]*)', line)
-    output[-1]['options'].append({
-        'beta': float(val[0])
-    })
+    output[-1]['options'].append({})
+    output[-1]['options'][-1]['beta'] = float(val[0])
 
 def _parse_b(line, output):
     val = re.findall(r'b: ([\d\.\-]*)', line)
@@ -32,7 +31,7 @@ def _parse_ws1(line, output):
 
 def _parse_decision(line, output):
     val = re.findall(r'Decision: ([\d\.\-]*)', line)
-    output[-1]['options'][-1]['Decision'] = int(val[0])
+    output[-1]['decision'] = int(val[0])
 
 def _parse_ws2(line, output):
     if not line.isspace(): raise Exception()
@@ -56,6 +55,36 @@ FSM = {
 }
 
 def parse(filepath):
+    """
+    sample_output = [{
+        'time': datetime.now(),
+        'decision': 1,
+        'options': [
+            {
+                'beta': 1.1,
+                'b': 1.1,
+                'tValue': 1.1,
+                'r': 1.1,
+
+            },
+            {
+                'beta': 1.1,
+                'b': 1.1,
+                'tValue': 1.1,
+                'r': 1.1,
+
+            },
+            {
+                # ...
+            }
+        ]
+    },
+    {
+        # ...
+    }
+    ]
+    """
+
     with open(filepath, 'r') as f:
         lines = f.readlines()
     
