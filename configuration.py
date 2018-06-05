@@ -1,3 +1,4 @@
+import json
 import string
 
 _BASE = {
@@ -46,7 +47,7 @@ _BASE = {
     }
 }
 
-_BASE = _BASE.update({
+_BASE.update({
     'positions':{
         'center': [0,0],
         'before_word': [0, -0.3],
@@ -57,7 +58,7 @@ _BASE = _BASE.update({
     }
 })
 
-_RUN = _BASE.update({
+_BASE.update({
     'timing': {
         'first_fixation': 20,
         'previous_classification': 2,
@@ -74,7 +75,7 @@ _RUN = _BASE.update({
 })
 
 
-_PARTICIPANT = _RUN.update({
+_BASE.update({
   'participant': '0023',
   'input': {
       'method': ['manual', 'auto', 'satori' ][0], 
@@ -83,4 +84,14 @@ _PARTICIPANT = _RUN.update({
   }
 })
 
-CONF = _PARTICIPANT
+CONF = _BASE
+
+
+def print_config():
+
+    def myconverter(o):
+        if True:
+            return o.__str__()
+
+    txt = json.dumps(CONF, indent=2, sort_keys=True, default=myconverter)
+    print(txt)

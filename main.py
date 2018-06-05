@@ -1,6 +1,5 @@
 import json
 import logging
-import os
 from psychopy import core
 from dataset import Dataset
 from screen import Screen
@@ -14,9 +13,10 @@ logging.basicConfig(
 )
 
 # Summon Configurations
-from configuration import CONF
-print(CONF) # TODO: select what to print
+from configuration import CONF, print_config
+print_config()
 input('Have you updated the config?') 
+
 logging.info('Configuration loaded')
 
 # Summon dataset
