@@ -69,6 +69,7 @@ _BASE.update({
         'answer': 1,
         'rest': 1,
         'last_fixation': 1,
+        'missing_prediction_timeout': 0.1,
     },
 })
 
@@ -96,7 +97,6 @@ _BASE.update({
   'participant': '0023',
   'input': {
       'method': ['manual', 'auto', 'satori' ][0], 
-      'path': 'a/b/c', # Used in method 'satori'
       'target': 'respectfulness', # Used in method 'auto'
   }
 })

@@ -13,11 +13,11 @@ class Classifier:
         return getattr(self, '_get_prediction_{}'.format(CONF['input']['method']))(sequence_number)
 
     def _get_prediction_manual(self, sequence_number):
-        while True:
-            key = event.waitKeys()
-            for direction, keys in CONF['keys'].items():
-                if key[0] in keys:
-                    return direction
+        key = event.getKeys()
+        for direction, keys in CONF['keys'].items():
+            if key and (key[0] in keys):
+                return direction
+        return None
 
     def _get_prediction_auto(self, sequence_number):
         return 'before' if CONF['input']['target'] < self.dataset.middle_word()[1] else 'after'

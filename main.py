@@ -81,6 +81,10 @@ while not dataset.is_finished():
 
     # Waits for answer to proceed to next word
     direction = classifier.get_prediction(sequence_number)
+    while direction == None:
+        logging.warning('Prediction missing, waiting')
+        core.wait(CONF['timing']['missing_prediction_timeout'])
+        direction = classifier.get_prediction(sequence_number)
     logging.info('Classifier prediction: {}'.format(direction))
 
     datalog.data['time_answer'] = clock.getTime()
