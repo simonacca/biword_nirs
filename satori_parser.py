@@ -1,4 +1,5 @@
 import re
+import logging
 from datetime import datetime
 
 
@@ -63,19 +64,19 @@ def parse(filepath):
 
     for line in lines:
         for parser in FSM[state]:
-            print('Trying parser {} on line: "{}"'.format(parser.__name__, repr(line)))
+            logging.debug('Trying parser {} on line: "{}"'.format(parser.__name__, repr(line)))
             try:
                 parser(line, output)
                 state = parser
                 break
             except Exception as e:
                 print(e)
-                print('Did not work')
+                logging.debug('Last parser did not work')
         else:
             raise Exception('parsing error')
     
     if state not in [_parse_end, _parse_decision]:
-        raise Exception('parsing error')
+        raise Exception('parsing error, FSM terminated early')
     
     return output
 
