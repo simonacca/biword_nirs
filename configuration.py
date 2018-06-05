@@ -20,12 +20,9 @@ _BASE = {
     },
     'tasks': {
         'icons': {
-            # 'before': u'\u2190',
-            # 'after':  u'\u2192',
-            # 'correction': u'\u2A2F',
-            'before': 'b',
-            'after':  'a',
-            'correction': 'c',
+            'before': u'\u2190',
+            'after':  u'\u2192',
+            'correction': u'\u2A2F',
             'fixation': '+',
         },
         'colors': {
@@ -55,7 +52,7 @@ _BASE.update({
         'center': [0,0],
         'before_word': [0, 0.2],
         'after_word': [0, -0.2],
-        'correction_icon': [0, -0.4],
+        'correction_icon': [0, .4],
         'before_icon': [0-_BASE['tasks']['distance'], 0],
         'after_icon': [_BASE['tasks']['distance'], 0],
     }
@@ -96,7 +93,7 @@ _BASE.update({
 _BASE.update({
   'participant': '0023',
   'input': {
-      'method': ['manual', 'auto', 'satori' ][0], 
+      'method': ['manual', 'auto', 'satori' ][2], 
       'target': 'respectfulness', # Used in method 'auto'
   }
 })
