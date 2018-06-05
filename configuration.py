@@ -9,7 +9,7 @@ _BASE = {
     },
     'keys': {
         'before': ['1', 'left', 'minus'],
-        'correction': ['2'],
+        'correction': ['2', 'down'],
         'after': ['3', 'right', 'plus'],
     },
     'screen': {
