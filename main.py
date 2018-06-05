@@ -45,6 +45,7 @@ trigger.start_experiment()
 core.wait(CONF['timing']['first_fixation'])
 
 sequence_number = -1
+direction = None
 while not dataset.is_finished():
     sequence_number += 1
     logging.info('Iteration #%s', sequence_number)
@@ -52,7 +53,7 @@ while not dataset.is_finished():
     trigger.start_trial()
 
     logging.info('Phase: Show previous classification')
-    screen.show_previous_classification(dataset.last_direction())
+    screen.show_previous_classification(direction)
 
     core.wait(CONF['timing']['previous_classification'])
 

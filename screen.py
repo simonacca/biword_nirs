@@ -22,7 +22,6 @@ class Screen:
         ).draw()
 
     def _word(self, word_range, finished):
-        print(word_range)
         visual.TextStim(
             self.window,
             text= unicode(word_range[1] , "utf-8") + ('!!' if finished else ''),
@@ -67,7 +66,7 @@ class Screen:
 
     def show_previous_classification(self, direction):
         if not direction: return
-        self._icon(direction, 'center', True).draw()
+        self._icon(direction, 'center', True)
         self.window.flip()
 
     def show_word(self, word_range, active=None):
