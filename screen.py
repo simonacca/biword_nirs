@@ -32,6 +32,7 @@ class Screen:
             visual.TextStim(
                 self.window,
                 text= unicode(word_range[0] , "utf-8"),
+                height=CONF['tasks']['side_words_height'],
                 color=CONF['tasks']['colors'][shades[False]],
                 pos=CONF['positions']['before_word']
             ).draw()
@@ -39,6 +40,7 @@ class Screen:
             visual.TextStim(
                 self.window,
                 text=unicode(word_range[2] , "utf-8"),
+                height=CONF['tasks']['side_words_height'],
                 color=CONF['tasks']['colors'][shades[False]],
                 pos=CONF['positions']['after_word']
             ).draw()

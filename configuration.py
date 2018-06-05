@@ -30,7 +30,8 @@ _BASE = {
             'active': 'white',
         },
         'distance': 0.58,
-        'height': 0.07,
+        'height': 0.12,
+        'side_words_height': 0.08,
     },
     'alphabet': {
         'letters' : string.ascii_uppercase,
@@ -52,7 +53,7 @@ _BASE.update({
         'center': [0,0],
         'before_word': [0, 0.2],
         'after_word': [0, -0.2],
-        'correction_icon': [0, .4],
+        'correction_icon': [0, 0.4],
         'before_icon': [0-_BASE['tasks']['distance'], 0],
         'after_icon': [_BASE['tasks']['distance'], 0],
     }
