@@ -7,6 +7,7 @@ class Classifier:
 
 
     def get_prediction(self):
+        "Calls the appropriate method according to CONF"
         return getattr(self, '_get_prediction_{}'.format(CONF['input']['method']))()
 
     def _get_prediction_manual(self):
