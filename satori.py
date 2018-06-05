@@ -105,7 +105,8 @@ def parse(filepath):
             raise Exception('parsing error')
     
     if state not in [_parse_end, _parse_decision]:
-        raise Exception('parsing error, FSM terminated early')
+        output.pop()
+        logging.warning('parsing error, FSM terminated early')
     
     return output
 
