@@ -30,7 +30,8 @@ class Classifier:
         except IndexError:
             return None
 
-        options = list(map(lambda d: d[CONF['satori']['predictor']], prediction['options']))
+        print(prediction)
+        options = [d[CONF['satori']['predictor']] for d in prediction['options']]
         options.pop(0)
 
         index, value = CONF['satori']['discriminator'](enumerate(options), key=operator.itemgetter(1))

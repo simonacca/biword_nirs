@@ -11,6 +11,7 @@ def _parse_time(line, output):
     
 def _parse_beta(line, output):
     val = re.findall(r'Beta: ([\d\.\-]*)', line)
+    if not val: raise Exception() # fail early
     output[-1]['options'].append({})
     output[-1]['options'][-1]['beta'] = float(val[0])
 
@@ -99,7 +100,6 @@ def parse(filepath):
                 state = parser
                 break
             except Exception as e:
-                print(e)
                 logging.debug('Last parser did not work')
         else:
             raise Exception('parsing error')

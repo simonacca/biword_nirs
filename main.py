@@ -58,6 +58,7 @@ while not dataset.is_finished():
     core.wait(CONF['timing']['previous_classification'])
 
     logging.info('Phase: Plan')
+    logging.info('Words are: {}'.format(dataset.middle_word()))
     datalog.data['sequence'] = sequence_number
     datalog.data['word'] = dataset.middle_word()
     datalog.data['time_start_planning'] = clock.getTime()
