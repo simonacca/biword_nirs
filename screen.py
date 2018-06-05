@@ -18,7 +18,7 @@ class Screen:
             height=CONF['tasks']['height'],
             text=CONF['tasks']['icons'][icon],
             pos=CONF['positions'][position],
-            color=CONF['tasks']['color'][shades[active]]
+            color=CONF['tasks']['colors'][shades[active]]
         ).draw()
 
     def _word(self, word_range, finished):

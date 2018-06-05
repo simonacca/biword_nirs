@@ -13,9 +13,10 @@ logging.basicConfig(
 )
 
 # Summon Configurations
-from configuration import CONF, print_config
-print_config()
-input('Have you updated the config?') 
+from configuration import CONF, serialize_conf
+
+print(serialize_conf())
+a = raw_input('Have you updated the config?') 
 
 logging.info('Configuration loaded')
 

@@ -20,9 +20,12 @@ _BASE = {
     },
     'tasks': {
         'icons': {
-            'before': u'\u2190',
-            'after':  u'\u2192',
-            'correction': u'\u2A2F',
+            # 'before': u'\u2190',
+            # 'after':  u'\u2192',
+            # 'correction': u'\u2A2F',
+            'before': 'b',
+            'after':  'a',
+            'correction': 'c',
             'fixation': '+',
         },
         'colors': {
@@ -60,13 +63,27 @@ _BASE.update({
 
 _BASE.update({
     'timing': {
-        'first_fixation': 20,
-        'previous_classification': 2,
-        'plan': 3,
-        'answer': 10,
-        'rest': 5,
-        'last_fixation': 20,
+        'first_fixation': 1,
+        'previous_classification': 1,
+        'plan': 1,
+        'answer': 1,
+        'rest': 1,
+        'last_fixation': 1,
     },
+})
+
+# _BASE.update({
+#     'timing': {
+#         'first_fixation': 20,
+#         'previous_classification': 2,
+#         'plan': 3,
+#         'answer': 10,
+#         'rest': 5,
+#         'last_fixation': 20,
+#     },
+# })
+
+_BASE.update({
   'satori': {
       'filepath': 'bettina_files/NIRS-2018-05-15_001_BCI_output.txt',
       'predictor': ['beta', 'b', 'tValue', 'r'][0],
@@ -87,11 +104,9 @@ _BASE.update({
 CONF = _BASE
 
 
-def print_config():
-
+def serialize_conf():
     def myconverter(o):
         if True:
             return o.__str__()
 
-    txt = json.dumps(CONF, indent=2, sort_keys=True, default=myconverter)
-    print(txt)
+    return json.dumps(CONF, indent=2, sort_keys=True, default=myconverter)
