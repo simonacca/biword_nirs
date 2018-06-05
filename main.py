@@ -7,13 +7,22 @@ from classifier import Classifier
 from trigger import Trigger
 from datalog import Datalog
 
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s-%(levelname)s-%(message)s',
-)
-
 # Summon Configurations
 from configuration import CONF, serialize_conf
+datalog = Datalog()
+
+logFormatter = logging.Formatter("%(asctime)s [%(levelname)-5.5s]  %(message)s")
+rootLogger = logging.getLogger()
+rootLogger.setLevel(logging.INFO)
+
+fileHandler = logging.FileHandler("{}/{}.log".format(CONF['datalog_folder'], datalog.OUTPUT_FILE_NAME))
+fileHandler.setFormatter(logFormatter)
+rootLogger.addHandler(fileHandler)
+
+consoleHandler = logging.StreamHandler()
+consoleHandler.setFormatter(logFormatter)
+rootLogger.addHandler(consoleHandler)
+
 
 print(serialize_conf())
 # raw_input('Have you updated the config?') 
@@ -26,7 +35,6 @@ logging.info('Dataset loaded')
 
 # Initialize stuff
 screen = Screen()
-datalog = Datalog()
 trigger = Trigger()
 classifier = Classifier(dataset)
 # TODO select input method

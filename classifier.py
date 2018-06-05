@@ -30,7 +30,6 @@ class Classifier:
         except IndexError:
             return None
 
-        print(prediction)
         options = [d[CONF['satori']['predictor']] for d in prediction['options']]
         options.pop(0)
 

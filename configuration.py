@@ -85,7 +85,7 @@ _BASE.update({
 _BASE.update({
   'satori': {
       'filepath': 'bettina_files/NIRS-2018-05-15_001_BCI_output.txt',
-      'port_address': [0xD010, None][0],
+      'port_address': [0xD010, None][1],
       'predictor': ['beta', 'b', 'tValue', 'r'][0],
       'discriminator': max,
   },

@@ -14,12 +14,12 @@ class Datalog:
             os.makedirs(CONF['datalog_folder'])
 
         # Determines name for output fole
-        OUTPUT_FILE_NAME = '{}_{}_{}_{}'.format(
+        self.OUTPUT_FILE_NAME = '{}_{}_{}_{}'.format(
             CONF['participant'],
             CONF['name'],
             CONF['input']['method'],
             datetime.datetime.now().strftime('%Y-%m-%d-%H-%M'))
-        self.path = os.path.join(CONF['datalog_folder'], OUTPUT_FILE_NAME)
+        self.path = os.path.join(CONF['datalog_folder'], self.OUTPUT_FILE_NAME)
 
         # TODO: auto create output folder
 
