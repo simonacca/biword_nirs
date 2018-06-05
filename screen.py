@@ -1,6 +1,11 @@
 from psychopy import visual, core, event
 from configuration import CONF
 
+shades = {
+    True: 'active',
+    False: 'inactive'
+}
+
 
 class Screen:
     def __init__(self):
@@ -8,11 +13,6 @@ class Screen:
         self._create_alphabet()
 
     def _icon(self, icon, position, active=False):
-        shades = {
-            True: 'active',
-            False: 'inactive'
-        }
-
         visual.TextStim(
             self.window,
             height=CONF['tasks']['height'],
@@ -22,22 +22,25 @@ class Screen:
         ).draw()
 
     def _word(self, word_range, finished):
+        print(word_range)
         visual.TextStim(
             self.window,
-            text=word_range[1] + '!!' if finished else '',
+            text= unicode(word_range[1] , "utf-8") + ('!!' if finished else ''),
             pos=CONF['positions']['center']
         ).draw()
 
         if not finished:
             visual.TextStim(
                 self.window,
-                text=word_range[0],
+                text= unicode(word_range[0] , "utf-8"),
+                color=CONF['tasks']['colors'][shades[False]],
                 pos=CONF['positions']['before_word']
             ).draw()
 
             visual.TextStim(
                 self.window,
-                text=word_range[2],
+                text=unicode(word_range[2] , "utf-8"),
+                color=CONF['tasks']['colors'][shades[False]],
                 pos=CONF['positions']['after_word']
             ).draw()
 

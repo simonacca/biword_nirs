@@ -16,7 +16,7 @@ logging.basicConfig(
 from configuration import CONF, serialize_conf
 
 print(serialize_conf())
-a = raw_input('Have you updated the config?') 
+# raw_input('Have you updated the config?') 
 
 logging.info('Configuration loaded')
 

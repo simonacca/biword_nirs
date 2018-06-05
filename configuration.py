@@ -53,9 +53,9 @@ _BASE = {
 _BASE.update({
     'positions':{
         'center': [0,0],
-        'before_word': [0, -0.3],
-        'after_word': [0, 0.3],
-        'correction_icon': [0, 0.5],
+        'before_word': [0, 0.2],
+        'after_word': [0, -0.2],
+        'correction_icon': [0, -0.4],
         'before_icon': [0-_BASE['tasks']['distance'], 0],
         'after_icon': [_BASE['tasks']['distance'], 0],
     }
