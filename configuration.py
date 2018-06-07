@@ -61,12 +61,12 @@ _BASE.update({
 
 _BASE.update({
     'timing': {
-        'first_fixation': 1,
-        'previous_classification': 1,
-        'plan': 1,
-        'answer': 1,
-        'rest': 1,
-        'last_fixation': 1,
+        'first_fixation': 5,
+        'previous_classification': 5,
+        'plan': 5,
+        'answer': 5,
+        'rest': 5,
+        'last_fixation': 5,
         'missing_prediction_timeout': 0.1,
     },
 })
@@ -95,7 +95,7 @@ _BASE.update({
 _BASE.update({
   'participant': '0023',
   'input': {
-      'method': ['manual', 'auto', 'satori' ][2], 
+      'method': ['manual', 'auto', 'satori' ][0], 
       'target': 'respectfulness', # Used in method 'auto'
   }
 })
