@@ -84,6 +84,7 @@ while not dataset.is_finished():
 
     phase_count = 0
     for phase in ['correction', 'before', 'after']:
+        classifier.check_escape()
         logging.info('Phase: {}'.format(phase))
         datalog.data['time_start_correction'] = clock.getTime()
         screen.show_word(dataset.middle_word(), phase)

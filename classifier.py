@@ -9,7 +9,7 @@ class Classifier:
     def __init__(self, dataset):
         self.dataset = dataset
 
-    def _escape(self, keys=None):
+    def check_escape(self, keys=None):
         if not keys:
             keys = event.getKeys()
         if keys and keys[-1] == 'escape':
@@ -23,18 +23,18 @@ class Classifier:
 
     def _get_prediction_manual(self, sequence_number):
         key = event.getKeys()
-        self._escape(key)
+        self.check_escape(key)
         for direction, keys in CONF['keys'].items():
             if key and (key[-1] in keys):
                 return direction
         return None
 
     def _get_prediction_auto(self, sequence_number):
-        self._escape()
+        self.check_escape()
         return 'before' if CONF['input']['target'] < self.dataset.middle_word()[1] else 'after'
 
     def _get_prediction_satori(self, sequence_number):
-        self._escape()
+        self.check_escape()
         data = satori.parse(CONF['satori']['filepath'])
         # Maybe try again here?
         try:
