@@ -95,6 +95,7 @@ while not dataset.is_finished():
 
     # Resting period
     logging.info('Phase: Rest')
+    trigger.arbitrary_trigger(1)
     screen.show_fixation()
     core.wait(CONF['timing']['rest'])
 
