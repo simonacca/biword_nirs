@@ -51,7 +51,10 @@ screen.show_fixation()
 # trigger.start_experiment()
 trigger.arbitrary_trigger(1)
 
-core.wait(max(0, CONF['timing']['first_fixation'] - CONF['timing']['previous_classification']))
+core.wait(max(0, CONF['timing']['first_fixation'] 
+    - CONF['timing']['previous_classification']
+    - CONF['timing']['rest2']
+    ))
 
 sequence_number = -1
 direction = None
@@ -65,6 +68,9 @@ while not dataset.is_finished():
     screen.show_previous_classification(direction)
 
     core.wait(CONF['timing']['previous_classification'])
+
+    screen.show_fixation()
+    core.wait(CONF['timing']['rest2'])
 
     logging.info('Phase: Plan')
     logging.info('Words are: {}'.format(dataset.middle_word()))

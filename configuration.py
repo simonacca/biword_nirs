@@ -63,28 +63,18 @@ _BASE.update({
 # Per run config
 _BASE.update({
     'timing': {
-        'first_fixation': 20,
-        'previous_classification': 2,
-        'plan': 3,
-        'answer': 10,
-        'rest': 25,
-        'last_fixation': 20,
-    },
-})
-
-
-# debug config
-_BASE.update({
-    'timing': {
-        'first_fixation': 3,
-        'previous_classification': 3,
+        'first_fixation': 60,
         'plan': 5,
         'answer': 5,
-        'rest': 5,
-        'last_fixation': 1,
+        'rest': 10,
+        'previous_classification': 2,
+        'rest2': 7,
+        'last_fixation': 10,
         'missing_prediction_timeout': 0.1,
     },
 })
+
+
 
 _BASE.update({
   'satori': {
