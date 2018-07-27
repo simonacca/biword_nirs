@@ -48,7 +48,8 @@ clock = core.Clock()
 logging.info('Starting experiment clock')
 # Presents simple fixation
 screen.show_fixation()
-trigger.start_experiment()
+# trigger.start_experiment()
+trigger.arbitrary_trigger(1)
 
 core.wait(max(0, CONF['timing']['first_fixation'] - CONF['timing']['previous_classification']))
 
@@ -58,7 +59,7 @@ while not dataset.is_finished():
     sequence_number += 1
     logging.info('Iteration #%s', sequence_number)
 
-    trigger.start_trial()
+    # trigger.start_trial()
 
     logging.info('Phase: Show previous classification')
     screen.show_previous_classification(direction)
@@ -71,15 +72,20 @@ while not dataset.is_finished():
     datalog.data['word'] = dataset.middle_word()
     datalog.data['time_start_planning'] = clock.getTime()
     screen.show_word(dataset.middle_word(), 'plan')
+    trigger.arbitrary_trigger(2)
 
     core.wait(CONF['timing']['plan'])
 
+    phase_count = 0
     for phase in ['correction', 'before', 'after']:
         logging.info('Phase: {}'.format(phase))
         datalog.data['time_start_correction'] = clock.getTime()
         screen.show_word(dataset.middle_word(), phase)
 
+        trigger.arbitrary_trigger(3 + phase_count)
         core.wait(CONF['timing']['answer'])
+
+        phase_count += 1
 
     # Resting period
     logging.info('Phase: Rest')

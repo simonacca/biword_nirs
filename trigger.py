@@ -18,12 +18,15 @@ class Trigger:
             parallel.setData( int(triggers[trigger], 2) ) 
             core.wait(0.01)
             parallel.setData(0)
+    
+    def arbitrary_trigger(self, number):
+        self._send_data(number)
 
-    def start_trial(self):
-        logging.info('Trigger send: start_trial')
-        self._send_data(1)
+    # def start_trial(self):
+    #     logging.info('Trigger send: start_trial')
+    #     self._send_data(1)
 
 
-    def start_experiment(self):
-        logging.info('Trigger send: start_experiment')
-        self._send_data(1)
+    # def start_experiment(self):
+    #     logging.info('Trigger send: start_experiment')
+    #     self._send_data(1)
