@@ -6,13 +6,18 @@ from configuration import CONF
 class Trigger:
     def __init__(self,):
         if CONF['satori']['port_address']:
-            self.port = parallel.ParallelPort(address=CONF['satori']['port_address'])
-            self.port.setData(0)
+            parallel.setPortAddress(CONF['satori']['port_address'])
+            # self.port = parallel.ParallelPort(address=CONF['satori']['port_address'])
+            parallel.setData(0)
     
     def _send_data(self, trigger):
         triggers = {
             1: "00000001",
             2: "00000010",
+            3: "00000011",
+            4: "00000100",
+            5: "00000101",
+            6: "00000110",
         }
         if CONF['satori']['port_address']:
             parallel.setData( int(triggers[trigger], 2) ) 
