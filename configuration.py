@@ -27,7 +27,7 @@ _BASE = {
         },
         'colors': {
             'inactive': 'gray',
-            'active': 'white',
+            'active': 'red',
         },
         'distance': 0.58,
         'height': 0.12,
@@ -59,28 +59,32 @@ _BASE.update({
     }
 })
 
+
+# Per run config
 _BASE.update({
     'timing': {
-        'first_fixation': 5,
+        'first_fixation': 20,
+        'previous_classification': 2,
+        'plan': 3,
+        'answer': 10,
+        'rest': 25,
+        'last_fixation': 20,
+    },
+})
+
+
+# debug config
+_BASE.update({
+    'timing': {
+        'first_fixation': 1,
         'previous_classification': 5,
         'plan': 5,
         'answer': 5,
         'rest': 5,
-        'last_fixation': 5,
+        'last_fixation': 1,
         'missing_prediction_timeout': 0.1,
     },
 })
-
-# _BASE.update({
-#     'timing': {
-#         'first_fixation': 20,
-#         'previous_classification': 2,
-#         'plan': 3,
-#         'answer': 10,
-#         'rest': 5,
-#         'last_fixation': 20,
-#     },
-# })
 
 _BASE.update({
   'satori': {

@@ -21,11 +21,12 @@ class Screen:
             color=CONF['tasks']['colors'][shades[active]]
         ).draw()
 
-    def _word(self, word_range, finished):
+    def _word(self, word_range, finished, active):
         visual.TextStim(
             self.window,
             text= unicode(word_range[1] , "utf-8") + ('!!' if finished else ''),
-            pos=CONF['positions']['center']
+            pos=CONF['positions']['center'],
+            color=CONF['tasks']['colors'][shades[active]]
         ).draw()
 
         if not finished:
@@ -71,15 +72,15 @@ class Screen:
         self._icon(direction, 'center', True)
         self.window.flip()
 
-    def show_word(self, word_range, active=None):
+    def show_word(self, word_range, phase=None):
         finished = word_range[0] == word_range[1] == word_range[2]
 
-        self._word(word_range, finished)
+        self._word(word_range, finished, phase == 'plan')
 
         if not finished:
             self._show_alphabet()
-            self._icon('before', 'before_icon', active == 'before')
-            self._icon('after', 'after_icon', active == 'after')
-            self._icon('correction', 'correction_icon', active == 'correction')
+            self._icon('before', 'before_icon', phase == 'before')
+            self._icon('after', 'after_icon', phase == 'after')
+            self._icon('correction', 'correction_icon', phase == 'correction')
 
         self.window.flip()

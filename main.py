@@ -70,7 +70,7 @@ while not dataset.is_finished():
     datalog.data['sequence'] = sequence_number
     datalog.data['word'] = dataset.middle_word()
     datalog.data['time_start_planning'] = clock.getTime()
-    screen.show_word(dataset.middle_word())
+    screen.show_word(dataset.middle_word(), 'plan')
 
     core.wait(CONF['timing']['plan'])
 
