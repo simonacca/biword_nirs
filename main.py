@@ -50,7 +50,7 @@ logging.info('Starting experiment clock')
 screen.show_fixation()
 trigger.start_experiment()
 
-core.wait(CONF['timing']['first_fixation'])
+core.wait(max(0, CONF['timing']['first_fixation'] - CONF['timing']['previous_classification']))
 
 sequence_number = -1
 direction = None
