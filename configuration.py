@@ -26,7 +26,7 @@ _BASE = {
             'fixation': '+',
         },
         'colors': {
-            'inactive': 'gray',
+            'inactive': '#C7C7C7',
             'active': 'red',
         },
         'distance': 0.58,
@@ -76,8 +76,8 @@ _BASE.update({
 # debug config
 _BASE.update({
     'timing': {
-        'first_fixation': 1,
-        'previous_classification': 5,
+        'first_fixation': 3,
+        'previous_classification': 3,
         'plan': 5,
         'answer': 5,
         'rest': 5,
