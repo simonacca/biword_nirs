@@ -1,7 +1,10 @@
 import json
 import string
 
+DEBUG = False
+
 _BASE = {
+    'debug': DEBUG,
     'name': 'base',
     'datalog_folder': 'datalog',
     'dataset': {
@@ -15,6 +18,7 @@ _BASE = {
     },
     'screen': {
         'size': [800, 600],
+		'fullscr': not DEBUG,
         'color': 'black',
         'monitor': 'testMonitor',
     },
@@ -22,7 +26,7 @@ _BASE = {
         'icons': {
             'before': u'\u2190',
             'after':  u'\u2192',
-            'correction': u'\u2A2F',
+            'correction': 'x',
             'fixation': '+',
         },
         'colors': {
@@ -63,7 +67,7 @@ _BASE.update({
 # Per run config
 _BASE.update({
     'timing': {
-        'first_fixation': 60,
+        'first_fixation': 20 if DEBUG else 60,
         'plan': 5,
         'answer': 5,
         'rest': 10,
@@ -78,7 +82,7 @@ _BASE.update({
 
 _BASE.update({
   'satori': {
-      'filepath': 'bettina_files/NIRS-2018-05-15_001_BCI_output.txt',
+      'path': "\\\\fdpmob0162\Users\B.Sorger\Documents\TSIData\BCI_Output\\",
       'port_address': [0x0378, None][0],
       'predictor': ['beta', 'b', 'tValue', 'r'][0],
       'discriminator': max,
@@ -89,7 +93,7 @@ _BASE.update({
 _BASE.update({
   'participant': '0023',
   'input': {
-      'method': ['manual', 'auto', 'satori' ][0], 
+      'method': ['manual', 'auto', 'satori' ][2], 
       'target': 'respectfulness', # Used in method 'auto'
   }
 })
