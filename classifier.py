@@ -35,8 +35,13 @@ class Classifier:
 
     def _get_prediction_satori(self, sequence_number):
         self.check_escape()
-        data = satori.parse(CONF['satori']['filepath'])
-        # Maybe try again here?
+		
+        while True:
+            try:
+                data = satori.parse(CONF['satori']['path'])
+                break
+            except:
+                pass
         try:
             prediction = data[sequence_number]
         except IndexError:
@@ -45,12 +50,12 @@ class Classifier:
         options = [d[CONF['satori']['predictor']] for d in prediction['options']]
         options.pop(0)
 
-        index, value = CONF['satori']['discriminator'](enumerate(options[1:]), key=operator.itemgetter(1))
+        index, value = CONF['satori']['discriminator'](enumerate(options), key=operator.itemgetter(1))
 
         mapping = {
-            2: 'correction',
-            3: 'before',
-            4: 'after'
+            1: 'correction',
+            2: 'before',
+            3: 'after'
         }
 
         return mapping[index + 1]
