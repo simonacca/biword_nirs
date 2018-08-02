@@ -9,7 +9,7 @@ shades = {
 
 class Screen:
     def __init__(self):
-        self.window = visual.Window(fullscr=True, units="norm", **CONF["screen"])
+        self.window = visual.Window(units="norm", **CONF["screen"])
         self._create_alphabet()
 
     def _icon(self, icon, position, active=False):

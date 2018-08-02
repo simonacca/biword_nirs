@@ -13,7 +13,7 @@ datalog = Datalog()
 
 logFormatter = logging.Formatter("%(asctime)s [%(levelname)-5.5s]  %(message)s")
 rootLogger = logging.getLogger()
-rootLogger.setLevel(logging.INFO)
+rootLogger.setLevel(logging.DEBUG if CONF['debug'] else logging.INFO)
 
 fileHandler = logging.FileHandler("{}/{}.log".format(CONF['datalog_folder'], datalog.OUTPUT_FILE_NAME))
 fileHandler.setFormatter(logFormatter)
@@ -49,7 +49,7 @@ logging.info('Starting experiment clock')
 # Presents simple fixation
 screen.show_fixation()
 # trigger.start_experiment()
-trigger.arbitrary_trigger(1)
+#trigger.arbitrary_trigger(1)
 
 core.wait(max(0, CONF['timing']['first_fixation'] 
     - CONF['timing']['previous_classification']
