@@ -1,4 +1,6 @@
 import re
+import os
+from os.path import join
 import logging
 from datetime import datetime
 
@@ -8,6 +10,9 @@ def _parse_time(line, output):
         'time': datetime.strptime(line, 'Time: %H:%M:%S\n'),
         'options': []
     })
+
+def _parse_frame(line, output):
+	pass
     
 def _parse_beta(line, output):
     val = re.findall(r'Beta: ([\d\.\-]*)', line)
@@ -44,18 +49,19 @@ def _parse_end(line, output):
 
 FSM = {
     'BEGIN': [_parse_time],
-    _parse_time: [_parse_beta],
+    _parse_time: [_parse_frame],
+	_parse_frame: [_parse_beta],
     _parse_beta: [_parse_b],
     _parse_b: [_parse_tValue],
     _parse_tValue: [_parse_r],
     _parse_r: [_parse_beta, _parse_ws1],
     _parse_ws1: [_parse_decision],
     _parse_decision: [_parse_ws2],
-    _parse_ws2: [_parse_time, _parse_end],
+    _parse_ws2: [_parse_time, _parse_ws2, _parse_end],
     _parse_end: [_parse_end]
 }
 
-def parse(filepath):
+def parse(path):
     """
     sample_output = [{
         'time': datetime.now(),
@@ -86,7 +92,18 @@ def parse(filepath):
     ]
     """
 
-    with open(filepath, 'r') as f:
+    files = os.listdir(path)
+    print(files)
+    files = list(sorted(filter(lambda x: x.endswith(".txt"), files)))
+    files = list(sorted(filter(lambda x: not x.startswith("BCI"), files)))
+    print(files)
+    file = files[-1]
+    print('Reading file', file)
+	
+	
+	
+
+    with open(join(path, file), 'r') as f:
         lines = f.readlines()
     
     output = []
@@ -94,17 +111,18 @@ def parse(filepath):
 
     for line in lines:
         for parser in FSM[state]:
-            logging.debug('Trying parser {} on line: "{}"'.format(parser.__name__, repr(line)))
+            print('Trying parser {} on line: "{}"'.format(parser.__name__, repr(line)))
             try:
                 parser(line, output)
                 state = parser
+                print("it worked")
                 break
             except Exception as e:
-                logging.debug('Last parser did not work')
+                print('Last parser did not work')
         else:
             raise Exception('parsing error')
     
-    if state not in [_parse_end, _parse_decision]:
+    if state not in [_parse_end, _parse_decision, _parse_ws2]:
         output.pop()
         logging.warning('parsing error, FSM terminated early')
     
@@ -112,5 +130,5 @@ def parse(filepath):
 
 
 if __name__ == '__main__':
-    r = parse('bettina_files/NIRS-2018-05-15_001_BCI_output.txt')
+    r = parse("\\\\fdpmob0162\Users\B.Sorger\Documents\TSIData\BCI_Output\\")
     print(r)
