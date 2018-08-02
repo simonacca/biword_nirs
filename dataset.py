@@ -59,12 +59,12 @@ class Dataset:
             except IndexError:
                 return
             
-            if self.mistake_count == 1:
-                self.directions.append(
-                    'before' if old_direction == 'after' else 'after')
-                return
-            elif self.mistake_count == 2:
-                self.mistake_count = 0
+            # if self.mistake_count == 1:
+            #     self.directions.append(
+            #         'before' if old_direction == 'after' else 'after')
+            #     return
+            # elif self.mistake_count == 2:
+            #     self.mistake_count = 0
         else:
             self.directions.append(direction)
             self.mistake_count = 0
