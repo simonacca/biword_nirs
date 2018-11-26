@@ -1,3 +1,4 @@
+import json
 import re
 import os
 from os.path import join
@@ -7,7 +8,7 @@ from datetime import datetime
 
 def _parse_time(line, output):
     output.append({
-        'time': datetime.strptime(line, 'Time: %H:%M:%S\n'),
+        #'time': datetime.strptime(line, 'Time: %H:%M:%S\n'),
         'options': []
     })
 
@@ -93,13 +94,10 @@ def parse(path):
     """
 
     files = os.listdir(path)
-    print(files)
     files = list(sorted(filter(lambda x: x.endswith(".txt"), files)))
     files = list(sorted(filter(lambda x: not x.startswith("BCI"), files)))
-    print(files)
     file = files[-1]
     print('Reading file', file)
-	
 	
 	
 
@@ -111,14 +109,15 @@ def parse(path):
 
     for line in lines:
         for parser in FSM[state]:
-            print('Trying parser {} on line: "{}"'.format(parser.__name__, repr(line)))
+            #print('Trying parser {} on line: "{}"'.format(parser.__name__, repr(line)))
             try:
                 parser(line, output)
                 state = parser
-                print("it worked")
+                #print("it worked")
                 break
             except Exception as e:
-                print('Last parser did not work')
+                #print('Last parser did not work')
+                pass
         else:
             raise Exception('parsing error')
     
@@ -131,4 +130,6 @@ def parse(path):
 
 if __name__ == '__main__':
     r = parse("\\\\fdpmob0162\Users\B.Sorger\Documents\TSIData\BCI_Output\\")
-    print(r)
+    print(json.dumps(r, indent=2))
+    with open('temp.txt', 'w+') as f:
+        f.write(json.dumps(r, indent=2))
