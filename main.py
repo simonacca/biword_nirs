@@ -116,6 +116,8 @@ while not dataset.is_finished():
 
     # splits dataset to start the next loop
     dataset.split(direction)
+	
+    logging.info("Correct trial #: {}".format(len(dataset.directions)))
 
 logging.info('Dictionary has lenght 1, end of iteration')
 logging.info('Final word: %s', dataset.middle_word()[1])
