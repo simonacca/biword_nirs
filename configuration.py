@@ -3,10 +3,12 @@ import string
 
 DEBUG = False
 
+REMOTE_FOLDER = "\\\\fdpmob0162\Users\B.Sorger\Documents\TSIData\BCI_Output\\"
+
 _BASE = {
     'debug': DEBUG,
     'name': 'base',
-    'datalog_folder': 'datalog',
+    'datalog_folder': REMOTE_FOLDER + "StimulationOutput\\",
     'dataset': {
         'name': 'american-english',
         'to_clean': True,
@@ -67,13 +69,13 @@ _BASE.update({
 # Per run config
 _BASE.update({
     'timing': {
-        'first_fixation': 20 if DEBUG else 60,
-        'plan': 5,
-        'answer': 5,
-        'rest': 10,
-        'previous_classification': 2,
-        'rest2': 7,
-        'last_fixation': 10,
+        'first_fixation': 1 if DEBUG else 60,
+        'plan': 1 if DEBUG else 5,
+        'answer': 1 if DEBUG else 5,
+        'rest': 1 if DEBUG else 10,
+        'previous_classification': 1 if DEBUG else 2,
+        'rest2': 1 if DEBUG else 7,
+        'last_fixation': 1 if DEBUG else 10,
         'missing_prediction_timeout': 0.1,
     },
 })
@@ -82,16 +84,16 @@ _BASE.update({
 
 _BASE.update({
   'satori': {
-      'path': "\\\\fdpmob0162\Users\B.Sorger\Documents\TSIData\BCI_Output\\",
+      'path': REMOTE_FOLDER,
       'port_address': [0x0378, None][0],
-      'predictor': ['beta', 'b', 'tValue', 'r'][0],
+      'predictor': ['beta', 'b', 'tValue', 'r'][2],
       'discriminator': max,
   },
 })
 
 
 _BASE.update({
-  'participant': '0023',
+  'participant': '0001',
   'input': {
       'method': ['manual', 'auto', 'satori' ][2], 
       'target': 'respectfulness', # Used in method 'auto'
